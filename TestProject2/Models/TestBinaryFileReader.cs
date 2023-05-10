@@ -53,6 +53,15 @@ namespace TestProject2.Models
             Assert.IsTrue(reader.IsMatched(bytes, 2), "0,1,2 の順番に値が入力されたのでここで true になる");
         }
 
+        [Test]
+        public void EditTest()
+        {
+            var reader = new BinaryFileReader();
+            var bytes = new byte[] { 0, 1, 0, 1, 1, 1, 2, 3, 4 };
+            var pattern = new byte[] { 1, 1 };
+            reader.Edit(pattern, bytes);
+        }
+
         [SetUp]
         public void SetUp()
         {

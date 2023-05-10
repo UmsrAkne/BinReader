@@ -6,7 +6,36 @@ namespace BinReader.Models
     public class BinaryFileReader
     {
         private int matchedCount;
+        private int counterFromMatched;
+        private bool matched;
 
+        public void Edit(byte[] pattern, byte[] bytes)
+        {
+            foreach (var b in bytes)
+            {
+                if (IsMatched(pattern, b))
+                {
+                    matched = true;
+                    counterFromMatched = 0;
+                }
+
+                if (matched)
+                {
+                    if (counterFromMatched % 4 == 0)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"");
+                        System.Diagnostics.Debug.WriteLine($"BinaryFileReader (26) : binary = {b}");
+                        System.Diagnostics.Debug.WriteLine($"BinaryFileReader (27) : counterfm = {counterFromMatched}");
+                        System.Diagnostics.Debug.WriteLine($"");
+                    }
+                    
+                    counterFromMatched++;
+                }
+
+                System.Diagnostics.Debug.WriteLine($"BinaryFileReader (14) : {b}");
+            }
+        }
+        
         /// <summary>
         /// pattern に完全に一致する順番で value が入力されたとき、 true を返し、それ以外の場合は false を返します。
         /// </summary>
