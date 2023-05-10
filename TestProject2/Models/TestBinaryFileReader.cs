@@ -32,6 +32,27 @@ namespace TestProject2.Models
             CollectionAssert.AreEqual(bs, exceptBs);
         }
 
+        [Test]
+        public void IsMatchedTest()
+        {
+            var reader = new BinaryFileReader();
+            var bytes = new Byte[] { 0,1,2 };
+            Assert.IsFalse(reader.IsMatched(bytes, 0));
+
+            Assert.IsFalse(reader.IsMatched(bytes, 0));
+            Assert.IsFalse(reader.IsMatched(bytes, 1));
+            Assert.IsTrue(reader.IsMatched(bytes, 2), "0,1,2 の順番に値が入力されたのでここで true になる");
+
+            Assert.IsFalse(reader.IsMatched(bytes, 3));
+
+            Assert.IsFalse(reader.IsMatched(bytes, 0));
+            Assert.IsFalse(reader.IsMatched(bytes, 1));
+
+            Assert.IsFalse(reader.IsMatched(bytes, 0));
+            Assert.IsFalse(reader.IsMatched(bytes, 1));
+            Assert.IsTrue(reader.IsMatched(bytes, 2), "0,1,2 の順番に値が入力されたのでここで true になる");
+        }
+
         [SetUp]
         public void SetUp()
         {
