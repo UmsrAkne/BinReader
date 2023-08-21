@@ -5,9 +5,18 @@ namespace BinReader.Models
     public class BinaryChecker
     {
         private int matchedCount;
+        private byte[] searchPattern;
 
-        public byte[] SearchPattern { get; set; } = { };
-        
+        public byte[] SearchPattern
+        {
+            get => searchPattern;
+            set
+            {
+                matchedCount = 0;
+                searchPattern = value;
+            }
+        }
+
         /// <summary>
         /// pattern に完全に一致する順番で value が入力されたとき、 true を返し、それ以外の場合は false を返します。
         /// </summary>
@@ -15,6 +24,11 @@ namespace BinReader.Models
         /// <returns>pattern と value が一致したかどうかを返す</returns>
         public bool IsMatched(byte value)
         {
+            if (SearchPattern.Length == 0)
+            {
+                return false;
+            }
+            
             if (SearchPattern[matchedCount] != value)
             {
                 matchedCount = 0;
