@@ -25,10 +25,9 @@ namespace BinReader.Models
                 lastIndex = i;
             }
 
-            if (lastIndex < list.Count - 1)
-            {
-                results.Add(list.GetRange(lastIndex, list.Count - lastIndex).ToArray());
-            }
+            // 上記のループでは、splitIndexes の最後のインデックスから list の末尾までの要素が取り出されない。
+            // 下記の処理で、最後の部分を results に加える。
+            results.Add(list.GetRange(lastIndex, list.Count - lastIndex).ToArray());
 
             return results;
         }

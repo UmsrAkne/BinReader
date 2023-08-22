@@ -23,5 +23,22 @@ namespace TestProject2.Models
             CollectionAssert.AreEqual(results[1], new byte[] { 1, 2, });
             CollectionAssert.AreEqual(results[2], new byte[] { 3, 4, });
         }
+        
+        [Test]
+        public void SplitArrayTest_2()
+        {
+            var splitter = new BinarySplitter();
+            var target = new byte[] { 0, 1, 2, 3, 4,};
+            var splitAddresses = new List<int> { 1, 3, 4,};
+
+            var results = splitter.SplitArray(target, splitAddresses).ToList();
+            
+            Assert.That(results.Count(), Is.EqualTo(4));
+            
+            CollectionAssert.AreEqual(results[0], new byte[] { 0, });
+            CollectionAssert.AreEqual(results[1], new byte[] { 1, 2, });
+            CollectionAssert.AreEqual(results[2], new byte[] { 3, });
+            CollectionAssert.AreEqual(results[3], new byte[] { 4, });
+        }
     }
 }
