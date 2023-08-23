@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinReader", "BinReader\BinReader.csproj", "{67B90A5F-D606-4487-B922-8F59E8ECE09D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject2", "TestProject2\TestProject2.csproj", "{1A92F86D-303C-4059-88C6-CD08DAC71998}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinReaderTest", "BinReaderTest\BinReaderTest.csproj", "{1A92F86D-303C-4059-88C6-CD08DAC71998}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
