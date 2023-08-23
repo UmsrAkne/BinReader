@@ -16,7 +16,7 @@ namespace BinReader.Models
                 searchPattern = value;
             }
         }
-        
+
         public int CheckedCount { get; private set; }
 
         public List<int> MatchedHeaderAddress { get; } = new List<int>();
@@ -31,16 +31,16 @@ namespace BinReader.Models
         public bool IsMatched(byte value)
         {
             CheckedCount++;
-            
+
             if (SearchPattern.Length == 0)
             {
                 return false;
             }
-            
+
             if (SearchPattern[matchedCount] != value)
             {
                 matchedCount = 0;
-                
+
                 // カウンターがリセットされた状態で、0番目の番号と一致するか確認する。
                 if (SearchPattern[matchedCount] == value)
                 {
@@ -51,7 +51,7 @@ namespace BinReader.Models
             }
 
             matchedCount++;
-            
+
             if (matchedCount < SearchPattern.Length)
             {
                 return false;
@@ -59,7 +59,7 @@ namespace BinReader.Models
 
             matchedCount = 0;
             MatchedHeaderAddress.Add(CheckedCount - SearchPattern.Length);
-            MatchedFooterAddress.Add(CheckedCount -1);
+            MatchedFooterAddress.Add(CheckedCount - 1);
             return true;
         }
     }
