@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BinReader.Models
@@ -22,6 +23,19 @@ namespace BinReader.Models
             }
 
             return str.All(Uri.IsHexDigit);
+        }
+
+        public static byte[] ToByteArray(string hexString)
+        {
+            var str = hexString.Replace(" ", "");
+
+            var subStrings = new List<string>();
+            for (int i = 0; i < str.Length / 2; i++)
+            {
+                subStrings.Add(str.Substring(i * 2 , 2));
+            }
+
+            return subStrings.Select(s => Convert.ToByte(s, 16)).ToArray();
         }
     }
 }

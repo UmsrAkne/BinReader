@@ -18,5 +18,12 @@ namespace TestProject2.Models
             Assert.IsFalse(HexConverter.CanConvert("1"), "文字数奇数なので不可");
             Assert.IsFalse(HexConverter.CanConvert("0af"), "文字数奇数なので不可");
         }
+
+        [Test]
+        public void ToByteArrayTest()
+        {
+            CollectionAssert.AreEqual(new byte[] { 0xa, }, HexConverter.ToByteArray("0a"));
+            CollectionAssert.AreEqual(new byte[] { 0, 0xa, }, HexConverter.ToByteArray("00 0a"));
+        }
     }
 }
