@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace BinReader.Models
 {
-    public class HexConverter
+    public abstract class HexConverter
     {
         /// <summary>
         /// 指定した16進数を表す文字列が、実際に変換可能かどうかを取得します。
