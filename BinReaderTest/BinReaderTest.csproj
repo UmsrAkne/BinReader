@@ -44,6 +44,7 @@
     <ItemGroup>
         <Compile Include="Models\BinaryCheckerTest.cs" />
         <Compile Include="Models\BinarySplitterTest.cs" />
+        <Compile Include="Models\HexConverterTest.cs" />
         <Compile Include="Models\TestBinaryFileReader.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
