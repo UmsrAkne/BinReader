@@ -39,7 +39,8 @@ namespace BinReader.Models.Behaviors
                 using (var fs = new FileStream(files.First(), FileMode.Open, FileAccess.Read))
                 {
                     var bs = new byte[fs.Length];
-                    fs.Read(bs, 0, bs.Length);
+                    var _ = fs.Read(bs, 0, bs.Length);
+                    vm?.SetBinary(bs);
                     fs.Close();
                 }
             }
