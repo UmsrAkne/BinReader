@@ -29,19 +29,21 @@ namespace BinReader.Models.Behaviors
         private void AssociatedObject_Drop(object sender, DragEventArgs e)
         {
             // ファイルパスの一覧の配列
-            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop);
             var vm = ((Window)sender).DataContext as MainWindowViewModel;
 
-            if (files != null && Path.GetExtension(files.First()) == ".txt")
+            if (files == null)
             {
-                // vm?.Load();
+                return;
+            }
 
-                using (var fs = new FileStream(files.First(), FileMode.Open, FileAccess.Read))
-                {
-                    var bs = new byte[fs.Length];
-                    fs.Read(bs, 0, bs.Length);
-                    fs.Close();
-                }
+            using (var fs = new FileStream(files.First(), FileMode.Open, FileAccess.Read))
+            {
+                var bs = new byte[fs.Length];
+                var _ = fs.Read(bs, 0, bs.Length);
+
+                vm?.SetBinaries(bs);
+                fs.Close();
             }
         }
 
