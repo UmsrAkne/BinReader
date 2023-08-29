@@ -46,6 +46,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Models\BinaryCheckerTest.cs" />
+        <Compile Include="Models\BinaryPieceTest.cs" />
         <Compile Include="Models\BinarySplitterTest.cs" />
         <Compile Include="Models\HexConverterTest.cs" />
         <Compile Include="Models\TestBinaryFileReader.cs" />
