@@ -21,6 +21,19 @@
     </i:Interaction.Behaviors>
 
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel
+            Grid.Row="0"
+            Margin="0,3"
+            Orientation="Horizontal">
+            <TextBlock Margin="5,0" Text="Search pattern -&gt;" />
+            <TextBox MinWidth="150" Text="{Binding SearchPattern}" />
+        </StackPanel>
+
+        <ListView Grid.Row="1" ItemsSource="{Binding BinaryPieces}" />
+
     </Grid>
 </Window>

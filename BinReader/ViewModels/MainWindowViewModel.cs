@@ -7,10 +7,12 @@ namespace BinReader.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
+        private string searchPattern = string.Empty;
+
         public string Title => "Binary Reader";
 
-        public string SearchPattern { get; set; } = string.Empty;
-        
+        public string SearchPattern { get => searchPattern; set => SetProperty(ref searchPattern, value); }
+
         public ObservableCollection<BinaryPiece> BinaryPieces { get; private set; }
 
         /// <summary>
@@ -38,6 +40,8 @@ namespace BinReader.ViewModels
             var splitter = new BinarySplitter();
             BinaryPieces = new ObservableCollection<BinaryPiece>(
                 splitter.SplitArray(bytes, matches).Select(b => new BinaryPiece(b)));
+            
+            RaisePropertyChanged(nameof(BinaryPieces));
         }
     }
 }
