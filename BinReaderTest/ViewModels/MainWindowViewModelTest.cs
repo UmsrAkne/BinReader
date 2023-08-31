@@ -18,5 +18,14 @@ namespace TestProject2.ViewModels
             CollectionAssert.AreEqual(vm.BinaryPieces[0].RawBytes, new byte[] { 0x0, });
             CollectionAssert.AreEqual(vm.BinaryPieces[1].RawBytes, new byte[] { 0x1, 0x2, 0x3, });
         }
+        
+        [Test]
+        public void SetBinariesTest_パターン空白()
+        {
+            var vm = new MainWindowViewModel { SearchPattern = string.Empty, };
+
+            vm.SetBinaries(new byte[] { 0x0, 0x1, 0x2, 0x3, });
+            CollectionAssert.AreEqual(vm.BinaryPieces[0].RawBytes, new byte[] {  0x0, 0x1, 0x2, 0x3, });
+        }
     }
 }
