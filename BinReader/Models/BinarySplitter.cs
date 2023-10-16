@@ -31,5 +31,44 @@ namespace BinReader.Models
 
             return results;
         }
+
+        public static List<BinaryPiece> Split(IEnumerable<byte> targets, List<byte> pattern)
+        {
+            if (pattern == null || pattern.Count == 0)
+            {
+                return new List<BinaryPiece>() { new BinaryPiece(targets.ToArray()), };
+            }
+
+            var list = new List<BinaryPiece>();
+            var bytes = new List<byte>();
+            var matchedCount = 0;
+
+            foreach (var b in targets)
+            {
+                bytes.Add(b);
+
+                if (b == pattern[matchedCount])
+                {
+                    matchedCount++;
+                    if (matchedCount >= pattern.Count)
+                    {
+                        list.Add(new BinaryPiece(bytes.ToArray()));
+                        bytes = new List<byte>();
+                        matchedCount = 0;
+                    }
+
+                    continue;
+                }
+
+                matchedCount = 0;
+            }
+
+            if (bytes.Count > 0)
+            {
+                list.Add(new BinaryPiece(bytes.ToArray()));
+            }
+
+            return list;
+        }
     }
 }
