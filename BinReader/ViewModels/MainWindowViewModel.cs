@@ -28,8 +28,11 @@ namespace BinReader.ViewModels
                 return;
             }
             
-            var checker = new BinaryChecker();
-            checker.SearchPattern = HexConverter.ToByteArray(SearchPattern);
+            var checker = new BinaryChecker
+            {
+                SearchPattern = HexConverter.ToByteArray(SearchPattern),
+            };
+
             foreach (var b in bytes)
             {
                 checker.IsMatched(b);
