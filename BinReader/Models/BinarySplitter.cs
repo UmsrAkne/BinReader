@@ -42,17 +42,24 @@ namespace BinReader.Models
             var list = new List<BinaryPiece>();
             var bytes = new List<byte>();
             var matchedCount = 0;
+            var address = 0;
 
             foreach (var b in targets)
             {
                 bytes.Add(b);
+                address++;
 
                 if (b == pattern[matchedCount])
                 {
                     matchedCount++;
                     if (matchedCount >= pattern.Count)
                     {
-                        list.Add(new BinaryPiece(bytes.ToArray()));
+                        var p = new BinaryPiece(bytes.ToArray())
+                        {
+                            Address = address - bytes.Count,
+                        };
+
+                        list.Add(p);
                         bytes = new List<byte>();
                         matchedCount = 0;
                     }
@@ -65,7 +72,12 @@ namespace BinReader.Models
 
             if (bytes.Count > 0)
             {
-                list.Add(new BinaryPiece(bytes.ToArray()));
+                var p = new BinaryPiece(bytes.ToArray())
+                {
+                    Address = address - bytes.Count,
+                };
+
+                list.Add(p);
             }
 
             return list;

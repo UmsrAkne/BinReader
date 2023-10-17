@@ -85,5 +85,28 @@ namespace TestProject2.Models
             CollectionAssert.AreEqual(target, BinarySplitter.Split(target, patternZero).First().RawBytes);
             CollectionAssert.AreEqual(target, BinarySplitter.Split(target, patternNull).First().RawBytes);
         }
+
+        [Test]
+        public void SplitTest_アドレスの値のテスト()
+        {
+            var target = new byte[] { 0, 1, 2, 0, 1, 2, };
+            var pattern = new List<byte> { 0, 1, };
+            var results = BinarySplitter.Split(target, pattern);
+            Assert.That(3, Is.EqualTo(results.Count));
+            Assert.That(0, Is.EqualTo(results[0].Address));
+            Assert.That(2, Is.EqualTo(results[1].Address));
+            Assert.That(5, Is.EqualTo(results[2].Address));
+        }
+
+        [Test]
+        public void SplitTest_アドレスの値のテスト_終端余りなし()
+        {
+            var target = new byte[] { 0, 1, 2, 0, 1, };
+            var pattern = new List<byte> { 0, 1, };
+            var results = BinarySplitter.Split(target, pattern);
+            Assert.That(2, Is.EqualTo(results.Count));
+            Assert.That(0, Is.EqualTo(results[0].Address));
+            Assert.That(2, Is.EqualTo(results[1].Address));
+        }
     }
 }
