@@ -30,7 +30,7 @@
             Margin="0,3"
             Orientation="Horizontal">
             <TextBlock Margin="5,0" Text="Search pattern -&gt;" />
-            <TextBox MinWidth="150" Text="{Binding SearchPattern}" />
+            <TextBox MinWidth="150" Text="{Binding SearchPattern, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
         <ListView Grid.Row="1" ItemsSource="{Binding BinaryPieces}" />
