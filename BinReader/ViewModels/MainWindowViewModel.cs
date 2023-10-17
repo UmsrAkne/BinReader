@@ -46,5 +46,12 @@ namespace BinReader.ViewModels
             
             RaisePropertyChanged(nameof(BinaryPieces));
         }
+
+        public void LoadBinary(byte[] bytes)
+        {
+            var pattern = HexConverter.ToByteArray(SearchPattern).ToList();
+            BinaryPieces = new ObservableCollection<BinaryPiece>(BinarySplitter.Split(bytes, pattern));
+            RaisePropertyChanged(nameof(BinaryPieces));
+        }
     }
 }

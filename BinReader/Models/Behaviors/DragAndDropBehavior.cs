@@ -42,7 +42,7 @@ namespace BinReader.Models.Behaviors
                 var bs = new byte[fs.Length];
                 var _ = fs.Read(bs, 0, bs.Length);
 
-                vm?.SetBinaries(bs);
+                vm?.LoadBinary(bs);
                 fs.Close();
             }
         }
